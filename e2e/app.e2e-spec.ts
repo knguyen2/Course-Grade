@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('kim-app App', () => {
+describe('KimNguyen-Finalterm2018 App', () => {
   let page: AppPage;
 
   beforeEach(() => {

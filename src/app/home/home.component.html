@@ -1,0 +1,123 @@
+
+<div align="center">
+<form novalidate #studentForm="ngForm" class="student-form" 
+(ngSubmit)="onSubmit()">
+
+  <div class="container-form">
+
+    <table style="width:90%">
+      <tr>
+        <td>Student List: </td>
+        <td>
+            <mat-form-field>     
+              <mat-select placeholder="List of Students" [(ngModel)]="submittedInfo" name="info">
+                <mat-option *ngFor="let student of students" 
+                [value]="student.viewValue">
+                {{student.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            </td>
+      </tr>    
+      <br>  
+      <tr>
+        <td>Course: </td>
+         <td>
+            <mat-form-field hintLabel="Min 10 characters, Max 50 characters">
+            <input matInput placeholder="Enter your Course Name" type="text" 
+                [(ngModel)]="info.course" 
+                name="course" 
+                #course="ngModel"
+                required
+                minlength="10"
+                maxlength="50">
+
+                <mat-hint align="end"> 
+                  {{course.value?.length || 10}}/50
+                </mat-hint>
+
+                <mat-error>
+                  <div *ngIf="course.touched && !course.valid">
+                    <div *ngIf="course.errors.required"> 
+                      Course Name is required
+                    </div>
+                  </div>
+                </mat-error>
+          </mat-form-field>
+        </td> 
+      </tr>
+      <br>  
+      <tr>
+        <td>Score: </td> 
+        <td>
+            <mat-form-field>
+                <input matInput placeholder="Enter your score" type="number" 
+                  [(ngModel)]="info.score" 
+                  name="score" 
+                  #score="ngModel"
+                  pattern="^([0-9]|[1-9][0-9]|100)$" 
+                  required>
+
+                    <mat-error>
+                      <div *ngIf="score.touched && !score.valid">
+                        <div *ngIf="score.errors.required"> 
+                          Score is required & must be in numeric format               
+                        </div>
+                        <div *ngIf="score.errors.pattern"> 
+                            Score is not valid
+                          </div>
+                      </div>
+                    </mat-error>
+              </mat-form-field>
+        </td>
+      </tr>
+      <br>  
+      <tr>
+        <td>Grade: {{info.grade}}</td>
+        <td>
+              <output MatOutput placeholder="Calculated grade as per score" type="text" 
+              [(ngModel)]="info.grade"
+              name="grade"
+              #grade="ngModel">
+              <div *ngIf="info.score <=60 && info.score >0 || null">F</div>
+              <div *ngIf="info.score <=70 && info.score >69 || null">D</div>
+              <div *ngIf="info.score <=80 && info.score >79 || null">C</div>
+              <div *ngIf="info.score <=90 && info.score >80 || null">B</div>
+              <div *ngIf="info.score <=100 && info.score >90 || null">A</div>
+              </output>
+        </td>
+      </tr>
+  </table>
+  </div>
+
+  <br>
+
+    <button type="submit" mat-button [disabled]="!studentForm.form.valid" class="background-primary text-floral-white">Submit</button>
+    <button mat-button type="reset">Clear</button>
+
+  </form>
+  <br><br><br><br>
+  <table class="left" style="width:90%">
+    <tr>
+      <td>
+        Student <strong>{{submittedInfo}}</strong> takes the course <strong>{{info.course}}</strong> has the grade <strong>{{info.score}}</strong>
+      </td>
+    </tr>
+    <br>
+    <tr>
+      <td>
+        Course name in uppercase: <strong>{{info.course | uppercase}}</strong>
+      </td>
+    </tr>
+    <br>
+    <tr>
+      <td>
+        Course name in lowercase: <strong>{{info.course | lowercase}}</strong>
+      </td>
+    </tr>
+</table> 
+</div>
+
+  <div>&nbsp;</div>
+
+

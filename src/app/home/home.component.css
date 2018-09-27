@@ -1,0 +1,35 @@
+
+
+.student-form {
+    min-width: 250px;
+    max-width: 1000px;
+    width: 100%;
+    background-color: rgb(0, 0, 0);   
+  }
+
+.container-form {
+    display: flex;
+    flex-direction: column;  
+    color: white;
+    font-size: 22px;
+    margin-top: 100px;
+}
+
+mat-form-field.mat-form-field {
+    font-size: 15px;
+    padding: 5px;
+    width: 100%;
+}
+
+button{
+    font-size: 17px;
+    color: rgb(255, 255, 255);
+}
+
+table{
+    color: rgb(177, 177, 177);
+}
+
+.left{
+    color: black;
+}
